@@ -19,7 +19,7 @@ def add_new_person():
 	cap = cv2.VideoCapture(0)
 	count = 0
 
-	start = time.clock()
+	start =time.process_time()
 	while True:
 		_,frame = cap.read()
 		gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
@@ -32,12 +32,12 @@ def add_new_person():
 			# print(face.shape)
 			# print("sdsdfdf",(w,h))
 			# cv2.imshow('grayface', face)
-			if start+0.4 <= time.clock():
+			if start+0.4 <= time.process_time():
 				width,length,temp = frame.shape
 				# print(Y)
 				cv2.imwrite(os.path.join('Trainingdata/'+name,str(count)+ '.jpg'), face)
 				cv2.rectangle(frame, (0,0), (length,width), (0,0,0),-1)
-				start = time.clock()
+				start = time.process_time()
 				count +=1
 		# time.sleep(0.6)
 		cv2.imshow('frame', frame)
@@ -110,7 +110,7 @@ def predict(face_detector):
 	face = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 	count = 0
 	cap = cv2.VideoCapture(0)
-	start = time.clock()
+	start = time.process_time()
 	while True:
 		_,frame = cap.read()
 		gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
